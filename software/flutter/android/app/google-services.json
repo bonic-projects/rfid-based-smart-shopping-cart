@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478281659928",
+    "project_id": "shopmate-ace21",
+    "storage_bucket": "shopmate-ace21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478281659928:android:ed2ee8ec5a3d9f2020f56d",
+        "android_client_info": {
+          "package_name": "com.example.shopmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9x5CbHM80kj2hoBRSLbx6LWkvUPA7N2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
