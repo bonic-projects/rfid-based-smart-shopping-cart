@@ -43,6 +43,12 @@ String uid;
 String path;
 
 
+//Motor pins
+#define motorPin1 13
+#define motorPin2 12
+#define motorPin3 14
+#define motorPin4 27
+
 String line1 = "";
 String line2 = "";
 
@@ -60,9 +66,19 @@ void streamCallback(StreamData data)
   FirebaseJson jVal = data.jsonObject();
   FirebaseJsonData line1FB;
   FirebaseJsonData line2FB;
+  FirebaseJsonData forward;
+  FirebaseJsonData backward;
+  FirebaseJsonData left;
+  FirebaseJsonData right;
+  FirebaseJsonData stop;
 
   jVal.get(line1FB, "l1");
   jVal.get(line2FB, "l2");
+  jVal.get(forward, "forward");
+  jVal.get(backward, "backward");
+  jVal.get(backward, "left");
+  jVal.get(backward, "right");
+  jVal.get(backward, "stop");
 
    if (line1FB.success)
   {
@@ -87,6 +103,46 @@ void streamCallback(StreamData data)
     lcd.print(line2);
 
   }
+  if(forward.success)
+  {
+     Serial.println("Success data Forward");
+      bool value = forward.to<bool>(); 
+      if(value) {
+          forward();
+      }
+  }
+    if(backward.success)
+  {
+     Serial.println("Success data backward");
+      bool value = backward.to<bool>(); 
+      if(value) {
+          backward();
+      }
+  }
+    if(left.success)
+  {
+     Serial.println("Success data left");
+      bool value = left.to<bool>(); 
+      if(value) {
+          left();
+      }
+  }
+    if(right.success)
+  {
+     Serial.println("Success data right");
+      bool value = right.to<bool>(); 
+      if(value) {
+          right();
+      }
+  }
+    if(stop.success)
+  {
+     Serial.println("Success data stop");
+      bool value = stop.to<bool>(); 
+      if(value) {
+          stop();
+      }
+  }
 }
 
 void streamTimeoutCallback(bool timeout)
@@ -100,6 +156,11 @@ void streamTimeoutCallback(bool timeout)
 
 void setup() {
   Serial.begin(115200);
+
+  pinMode(motorPin1,OUTPUT);
+  pinMode(motorPin2,OUTPUT);
+  pinMode(motorPin3,OUTPUT);
+  pinMode(motorPin4,OUTPUT);
 
   lcd.init();
   lcd.clear();         
@@ -209,7 +270,9 @@ void updateData(bool isUpdate = false){
   {
     sendDataPrevMillis = millis();
     FirebaseJson json;
-    json.set("rfid", uidValue);
+    json.set("dry", ddist);
+    json.set("metal", mdist);
+    json.set("wet", wdist);
     json.set(F("ts/.sv"), F("timestamp"));
     Serial.printf("Set data with timestamp... %s\n", Firebase.setJSON(fbdo, path.c_str(), json) ? fbdo.to<FirebaseJson>().raw() : fbdo.errorReason().c_str());
     Serial.println(""); 
@@ -261,4 +324,31 @@ void loop() {
   delay(1000);  // Delay for 1 second (adjust as needed)
 
   updateData(true);
+}
+
+void forward(){
+  digitalWrite(motorPin1,HIGH);
+  digitalWrite(motorPin2,LOW);
+  digitalWrite(motorPin3,HIGH);
+  digitalWrite(motorPin4,LOW);
+
+}
+void backward(){
+  digitalWrite(motorPin1,LOW);
+  digitalWrite(motorPin2,HIGH);
+  digitalWrite(motorPin3,LOW);
+  digitalWrite(motorPin4,HIGH);
+
+}void left(){
+  digitalWrite(motorPin1,HIGH);   //Assuming motorpin 1 is on right
+  digitalWrite(motorPin2,LOW);
+  digitalWrite(motorPin3,LOW);
+  digitalWrite(motorPin4,HIGH);
+
+}void right(){
+  digitalWrite(motorPin1,LOW);     //Assuming motorpin 1 is on right
+  digitalWrite(motorPin2,HIGH);
+  digitalWrite(motorPin3,HIGH);
+  digitalWrite(motorPin4,LOW);
+
 }
