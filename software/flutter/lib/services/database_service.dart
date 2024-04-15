@@ -3,6 +3,7 @@ import 'package:shopmate/app/app.logger.dart';
 import 'package:shopmate/models/device.dart';
 import 'package:stacked/stacked.dart';
 
+
 class DatabaseService with ListenableServiceMixin {
   final log = getLogger('RealTimeDB_Service');
 
@@ -11,9 +12,10 @@ class DatabaseService with ListenableServiceMixin {
   DeviceReading? _node;
   DeviceReading? get node => _node;
 
+
   void setupNodeListening() {
     DatabaseReference starCountRef =
-        _db.ref('/devices/34KJA0u4EMdle7wfHfGM12mRq4t2/reading');
+        _db.ref('/devices/XFT0Hyr6GrYzASiOh4jkGLOo89k2/reading');
     log.i("R ${starCountRef.key}");
     try {
       starCountRef.onValue.listen((DatabaseEvent event) {
@@ -31,7 +33,7 @@ class DatabaseService with ListenableServiceMixin {
 
   Future<DeviceData?> getDeviceData() async {
     DatabaseReference dataRef =
-        _db.ref('/devices/34KJA0u4EMdle7wfHfGM12mRq4t2/data');
+        _db.ref('/devices/XFT0Hyr6GrYzASiOh4jkGLOo89k2/data');
     final value = await dataRef.once();
     if (value.snapshot.exists) {
       return DeviceData.fromMap(value.snapshot.value as Map);
@@ -41,7 +43,7 @@ class DatabaseService with ListenableServiceMixin {
 
   void setDeviceData(DeviceData data) {
     DatabaseReference dataRef =
-        _db.ref('/devices/34KJA0u4EMdle7wfHfGM12mRq4t2/data');
+        _db.ref('/devices/XFT0Hyr6GrYzASiOh4jkGLOo89k2/data');
     dataRef.update(data.toJson());
   }
 }

@@ -20,16 +20,19 @@ class DeviceReading {
 class DeviceData {
   String l1;
   String l2;
+  String? direction;
 
   DeviceData({
     required this.l1,
     required this.l2,
+    required this.direction,
   });
 
   factory DeviceData.fromMap(Map data) {
     return DeviceData(
       l1: data['l1'] ?? "",
-      l2: data['l2'] ?? "false",
+      l2: data['l2'] ?? "",
+      direction: data['direction'],
     );
   }
 

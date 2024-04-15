@@ -13,7 +13,6 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import '../services/cart_controll_database_service.dart';
 import '../services/database_service.dart';
 import '../services/firestore_service.dart';
 import '../services/user_service.dart';
@@ -37,5 +36,4 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => UserService());
   locator.registerLazySingleton(() => FirebaseAuthenticationService());
   locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => CartControllDatabaseService());
 }

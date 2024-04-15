@@ -40,7 +40,7 @@ class ControllCartView extends StatelessWidget {
                             top: 9,
                             left: 76,
                             child: ForwardTriangle(
-                              onTap: () => model.isBoatMovement('f'),
+                              onTap: () => model.isBoatMovement('b'),
                             ),
                           ),
                           Positioned(
@@ -67,7 +67,7 @@ class ControllCartView extends StatelessWidget {
                             bottom: 10,
                             left: 76,
                             child: DownwardTriangle(
-                              onTap: () => model.isBoatMovement('b'),
+                              onTap: () => model.isBoatMovement('f'),
                             ),
                           ),
                         ],

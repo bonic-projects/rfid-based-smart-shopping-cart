@@ -41,7 +41,7 @@ class HomeViewModel extends StreamViewModel<List<Product>> {
   Stream<List<Product>> get stream => _firestoreService.getAllProducts();
 
   //Device data
-  DeviceData _deviceData = DeviceData(l1: "", l2: "");
+  DeviceData _deviceData = DeviceData(l1: "", l2: "", direction: "s");
 
   DeviceData get deviceData => _deviceData;
 
@@ -70,9 +70,10 @@ class HomeViewModel extends StreamViewModel<List<Product>> {
       _deviceData = DeviceData(
         l1: deviceData.l1,
         l2: deviceData.l2,
+        direction: "s",
       );
     } else {
-      _deviceData = DeviceData(l1: "", l2: "");
+      _deviceData = DeviceData(l1: "", l2: "", direction: "s");
     }
     setBusy(false);
   }

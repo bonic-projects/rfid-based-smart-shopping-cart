@@ -1,4 +1,3 @@
-import 'package:shopmate/services/cart_controll_database_service.dart';
 import 'package:shopmate/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:shopmate/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:shopmate/ui/views/home/home_view.dart';
@@ -38,7 +37,6 @@ import 'package:shopmate/ui/views/controll_cart/controll_cart_view.dart';
     LazySingleton(classType: UserService),
     LazySingleton(classType: FirebaseAuthenticationService),
     LazySingleton(classType: SnackbarService),
-    LazySingleton(classType: CartControllDatabaseService),
 // @stacked-service
   ],
   bottomsheets: [
